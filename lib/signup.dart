@@ -1,11 +1,34 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:welcome_login_signup/component/roundedinput.dart';
 import 'package:welcome_login_signup/component/roundedinputpassword.dart';
 
 class Signup extends StatelessWidget {
+  final _namecontroller = TextEditingController();
+  final _emailcontroller = TextEditingController();
+  final _passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Future<void> _submit() async {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: _emailcontroller.text,
+                password: _passwordcontroller.text);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e);
+      }
+      Navigator.pop(context);
+    }
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -16,15 +39,15 @@ class Signup extends StatelessWidget {
           ),
           Column(
             children: [
-              RoundedInput('name'),
+              RoundedInput('name', _namecontroller),
               SizedBox(
                 height: 10,
               ),
-              RoundedInput('email'),
+              RoundedInput('email', _emailcontroller),
               SizedBox(
                 height: 10,
               ),
-              RoundedInputpassword(),
+              RoundedInputpassword(_passwordcontroller),
               SizedBox(
                 height: 10,
               ),
@@ -32,7 +55,7 @@ class Signup extends StatelessWidget {
                   style: ButtonStyle(
                       padding: MaterialStateProperty.all(
                           EdgeInsets.only(left: 50, right: 50))),
-                  onPressed: () {},
+                  onPressed: _submit,
                   child: Text('Signup')),
             ],
           ),
@@ -73,7 +96,7 @@ class Signup extends StatelessWidget {
                   TextButton(
                     child: Text('Already have an acount? Signin'),
                     onPressed: () {
-                     Navigator.pop(context);
+                      Navigator.pop(context);
                     },
                   ),
                 ],

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "130337329350",
+    "project_id": "firstloginapp-8089c",
+    "storage_bucket": "firstloginapp-8089c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130337329350:android:bcd4ece904f8d5bea987c7",
+        "android_client_info": {
+          "package_name": "com.example.welcome_login_signup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "130337329350-ot393lndg3mhnaoihp3cr592cnlbkdpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUQnv5Gn856LQA5fDHkhBfIbI3Yov3DGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "130337329350-ot393lndg3mhnaoihp3cr592cnlbkdpg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
